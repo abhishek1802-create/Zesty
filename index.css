@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Header Navigation styles */
+
+*{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Shimmer Card Styling */
+.shimmer-card {
+  width: 300px;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.shimmer-details {
+  padding: 12px 0;
+}
+
+.shimmer-title {
+  width: 80%;
+  height: 20px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+}
+
+.shimmer-tags {
+  width: 90%;
+  height: 16px;
+  margin-bottom: 8px;
+  background-color: #f0f0f0;
+}
+
+.shimmer-rating {
+  width: 40%;
+  height: 16px;
+  margin-bottom: 8px;
+  background-color: #f0f0f0;
+}
+
+.shimmer-price {
+  width: 30%;
+  height: 16px;
+  background-color: #f0f0f0;
+}
+
+/* Shimmer Animation */
+.stroke {
+  position: relative;
+  overflow: hidden;
+}
+
+.stroke.animate::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+@keyframes shimmer {
+  100% {
+      transform: translateX(100%);
+  }
+}
+
+/* Container for Shimmer Cards */
+.shimmer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+
