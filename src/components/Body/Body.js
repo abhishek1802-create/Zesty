@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "../RestaurantCard/RestaurantCard";
+import RestaurantCard, {withPromotedLable} from "../RestaurantCard/RestaurantCard";
 import ShimmerUI from "../ShimmerUI/ShimmerUI";
 import { FiFilter } from 'react-icons/fi';
 import { BiSearch } from 'react-icons/bi';
@@ -11,6 +11,8 @@ const Body = () => {
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchText, setSearchText] = useState("");
+
+    const PromotedLabelRestaurant = withPromotedLable(RestaurantCard);
     
     const fetchData = async () => {
         try {
@@ -42,7 +44,7 @@ const Body = () => {
         );
         setFilteredRestaurants(searchedList);
     }
-    console.log("listOfRestaurants",listOfRestaurants);
+    
     return (
         <div className="max-w-7xl mx-auto px-4 py-2 sm:px-6 lg:px-8 mt-3">
             {/* Search and Filters */}
@@ -87,7 +89,12 @@ const Body = () => {
                             to={"/restaurant/" + restaurant.info.id}
                             className="block hover:shadow-lg transition-shadow duration-200"
                         >
-                            <RestaurantCard resData={restaurant} />
+                            {
+                                restaurant.info.promoted ? 
+                                <PromotedLabelRestaurant resData={restaurant}/> : 
+                                <RestaurantCard resData={restaurant} />
+                            }
+                            {/* <RestaurantCard resData={restaurant} /> */}
                         </Link>
                     ))}
                 </div>
