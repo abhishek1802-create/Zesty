@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import logoImage from "../../../Assets/images.png";
 import { FaShoppingCart } from "react-icons/fa";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
 
 const Header = () => {
+  const itemQuantity = useSelector((store) => store.cart.cartItemsNumber)
   const onlineStatus = useOnlineStatus();
-
+  
   return (
     <>
       <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -70,15 +72,17 @@ const Header = () => {
                   </button>
                 </li>
                 <li>
-                  <button
-                    className="relative p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-50 transition-all"
-                    aria-label="Shopping cart"
-                  >
-                    <FaShoppingCart className="text-xl" />
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                      0
-                    </span>
-                  </button>
+                  <Link to="/cart">
+                    <button
+                      className="relative p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-50 transition-all"
+                      aria-label="Shopping cart"
+                    >
+                      <FaShoppingCart className="text-xl" />
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                        {itemQuantity ? itemQuantity : 0}
+                      </span>
+                    </button>
+                  </Link>
                 </li>
               </ul>
             </nav>

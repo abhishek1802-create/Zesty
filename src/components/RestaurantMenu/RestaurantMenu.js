@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../../hooks/useRestaurantMenu";
 import RestaurantCategory from "../RestaurantCategory/RestaurantCategory";
+import MenuShimmer from "../MenuShimmer/MenuShimmer";
 
 const RestaurantMenu = () => {
 
@@ -10,7 +11,7 @@ const RestaurantMenu = () => {
 
   const resMenu = useRestaurantMenu(resId);
 
-  if (resMenu === null) return <h1>Loading...</h1>;
+  if (resMenu === null) return <MenuShimmer/>;
 
   const resDetails = resMenu?.cards[2]?.card?.card?.info;
 
@@ -20,12 +21,9 @@ const RestaurantMenu = () => {
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-  console.log(categories);
-
-  //console.log("categories:::", categories);
-
+  
   return (
-    <div className="text-center">
+    <div className="text-center"> 
       {categories &&
         categories.map((category, index) => (
           <RestaurantCategory 
