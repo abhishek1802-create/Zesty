@@ -21,7 +21,7 @@
   "author": "Abhishek Bhade",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.13.2",
+    "parcel": "^2.13.3",
     "postcss": "^8.4.49",
     "process": "^0.11.10",
     "tailwindcss": "^3.4.16"
